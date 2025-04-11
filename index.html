@@ -3,71 +3,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Heating Cost Calculator – Live Version</title>
+  <title>Heating Cost Calculator – Phase 6 (Step 4)</title>
   <style>
     body { font-family: Arial, sans-serif; max-width: 1000px; margin: 0 auto; padding: 1rem; }
-    label, input { display: block; margin: 0.5rem 0; }
+    label, input, select { display: block; margin: 0.5rem 0; }
     table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
     th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: center; }
     th { background: #f0f0f0; }
   </style>
 </head>
 <body>
-<h1>Heating Cost Calculator</h1>
+<h1>Heating Cost Calculator – Phase 6 (Step 4)</h1>
 
 <label for="city">Choose Your City:</label>
-<select id="city"><option value="">-- Select a City --</option>
-<option value="9500">Anchorage, AK</option>
-<option value="3000">Atlanta, GA</option>
-<option value="1500">Austin, TX</option>
-<option value="4200">Baltimore, MD</option>
-<option value="7200">Billings, MT</option>
-<option value="5000">Boston, MA</option>
-<option value="6200">Buffalo, NY</option>
-<option value="7500">Calgary, AB</option>
-<option value="2800">Charlotte, NC</option>
-<option value="5500">Chicago, IL</option>
-<option value="4800">Cincinnati, OH</option>
-<option value="5000">Cleveland, OH</option>
-<option value="4900">Columbus, OH</option>
-<option value="1800">Dallas, TX</option>
-<option value="6000">Denver, CO</option>
-<option value="5800">Detroit, MI</option>
-<option value="8100">Edmonton, AB</option>
-<option value="4600">Halifax, NS</option>
-<option value="1300">Houston, TX</option>
-<option value="5100">Indianapolis, IN</option>
-<option value="4400">Kansas City, MO</option>
-<option value="1400">Las Vegas, NV</option>
-<option value="1000">Los Angeles, CA</option>
-<option value="4100">Louisville, KY</option>
-<option value="500">Miami, FL</option>
-<option value="6200">Milwaukee, WI</option>
-<option value="7000">Minneapolis, MN</option>
-<option value="5000">Montreal, QC</option>
-<option value="2800">Nashville, TN</option>
-<option value="1000">New Orleans, LA</option>
-<option value="4100">New York, NY</option>
-<option value="3600">Oklahoma City, OK</option>
-<option value="5800">Omaha, NE</option>
-<option value="800">Orlando, FL</option>
-<option value="4800">Ottawa, ON</option>
-<option value="4400">Philadelphia, PA</option>
-<option value="800">Phoenix, AZ</option>
-<option value="5100">Pittsburgh, PA</option>
-<option value="4500">Portland, OR</option>
-<option value="5900">Quebec City, QC</option>
-<option value="2800">Raleigh, NC</option>
-<option value="7800">Regina, SK</option>
-<option value="5400">Salt Lake City, UT</option>
-<option value="1000">San Diego, CA</option>
-<option value="1500">San Francisco, CA</option>
-<option value="4200">Seattle, WA</option>
-<option value="4000">St. Louis, MO</option>
-<option value="4200">Toronto, ON</option>
-<option value="3000">Vancouver, BC</option>
-<option value="7200">Winnipeg, MB</option>
+<select id="city">
+  <option value="">-- Select a City --</option>
+  <option value="9500">Anchorage, AK</option><option value="3000">Atlanta, GA</option><option value="1500">Austin, TX</option><option value="4200">Baltimore, MD</option><option value="7200">Billings, MT</option><option value="5000">Boston, MA</option><option value="6200">Buffalo, NY</option><option value="7500">Calgary, AB</option><option value="2800">Charlotte, NC</option><option value="5500">Chicago, IL</option><option value="4800">Cincinnati, OH</option><option value="5000">Cleveland, OH</option><option value="4900">Columbus, OH</option><option value="1800">Dallas, TX</option><option value="6000">Denver, CO</option><option value="5800">Detroit, MI</option><option value="8100">Edmonton, AB</option><option value="4600">Halifax, NS</option><option value="1300">Houston, TX</option><option value="5100">Indianapolis, IN</option><option value="4400">Kansas City, MO</option><option value="1400">Las Vegas, NV</option><option value="1000">Los Angeles, CA</option><option value="4100">Louisville, KY</option><option value="500">Miami, FL</option><option value="6200">Milwaukee, WI</option><option value="7000">Minneapolis, MN</option><option value="5000">Montreal, QC</option><option value="2800">Nashville, TN</option><option value="1000">New Orleans, LA</option><option value="4100">New York, NY</option><option value="3600">Oklahoma City, OK</option><option value="5800">Omaha, NE</option><option value="800">Orlando, FL</option><option value="4800">Ottawa, ON</option><option value="4400">Philadelphia, PA</option><option value="800">Phoenix, AZ</option><option value="5100">Pittsburgh, PA</option><option value="4500">Portland, OR</option><option value="5900">Quebec City, QC</option><option value="2800">Raleigh, NC</option><option value="7800">Regina, SK</option><option value="5400">Salt Lake City, UT</option><option value="1000">San Diego, CA</option><option value="1500">San Francisco, CA</option><option value="4200">Seattle, WA</option><option value="4000">St. Louis, MO</option><option value="4200">Toronto, ON</option><option value="3000">Vancouver, BC</option><option value="7200">Winnipeg, MB</option>
 </select>
+
 <label for="hdd">Heating Degree Days (HDD):</label>
 <input type="number" id="hdd" placeholder="e.g., 4200">
 
@@ -88,56 +41,135 @@
     <tr>
       <td>Electricity (¢/kWh)</td>
       <td><input type="number" id="price-electricity" step="any"></td>
-      <td><input type="number" id="eff-electricity" value="100"></td>
+      <td><input type="number" id="eff-electricity" value="90"></td>
       <td id="cost100k-electricity">--</td>
       <td id="seasonal-electricity">--</td>
     </tr>
-    <tr>
+<tr>
       <td>Natural Gas (¢/m³)</td>
-      <td><input type="number" id="price-ng" step="any"></td>
-      <td><input type="number" id="eff-ng" value="90"></td>
-      <td id="cost100k-ng">--</td>
-      <td id="seasonal-ng">--</td>
+      <td><input type="number" id="price-ng_m3" step="any"></td>
+      <td><input type="number" id="eff-ng_m3" value="90"></td>
+      <td id="cost100k-ng_m3">--</td>
+      <td id="seasonal-ng_m3">--</td>
     </tr>
-    <tr>
+<tr>
+      <td>Natural Gas ($/therm)</td>
+      <td><input type="number" id="price-ng_therm" step="any"></td>
+      <td><input type="number" id="eff-ng_therm" value="90"></td>
+      <td id="cost100k-ng_therm">--</td>
+      <td id="seasonal-ng_therm">--</td>
+    </tr>
+<tr>
       <td>Propane ($/L)</td>
-      <td><input type="number" id="price-propane" step="any"></td>
-      <td><input type="number" id="eff-propane" value="92"></td>
-      <td id="cost100k-propane">--</td>
-      <td id="seasonal-propane">--</td>
+      <td><input type="number" id="price-propane_l" step="any"></td>
+      <td><input type="number" id="eff-propane_l" value="90"></td>
+      <td id="cost100k-propane_l">--</td>
+      <td id="seasonal-propane_l">--</td>
     </tr>
-    <tr>
+<tr>
+      <td>Propane ($/gallon)</td>
+      <td><input type="number" id="price-propane_gal" step="any"></td>
+      <td><input type="number" id="eff-propane_gal" value="90"></td>
+      <td id="cost100k-propane_gal">--</td>
+      <td id="seasonal-propane_gal">--</td>
+    </tr>
+<tr>
+      <td>Heating Oil ($/L)</td>
+      <td><input type="number" id="price-oil_l" step="any"></td>
+      <td><input type="number" id="eff-oil_l" value="90"></td>
+      <td id="cost100k-oil_l">--</td>
+      <td id="seasonal-oil_l">--</td>
+    </tr>
+<tr>
+      <td>Heating Oil ($/gallon)</td>
+      <td><input type="number" id="price-oil_gal" step="any"></td>
+      <td><input type="number" id="eff-oil_gal" value="90"></td>
+      <td id="cost100k-oil_gal">--</td>
+      <td id="seasonal-oil_gal">--</td>
+    </tr>
+<tr>
       <td>Firewood (Full Cord)</td>
-      <td><input type="number" id="price-wood" step="any"></td>
-      <td><input type="number" id="eff-wood" value="70"></td>
-      <td id="cost100k-wood">--</td>
-      <td id="seasonal-wood">--</td>
+      <td><input type="number" id="price-wood_full" step="any"></td>
+      <td><input type="number" id="eff-wood_full" value="90"></td>
+      <td id="cost100k-wood_full">--</td>
+      <td id="seasonal-wood_full">--</td>
     </tr>
-    <tr>
+<tr>
+      <td>Firewood (Face Cord 16")</td>
+      <td><input type="number" id="price-wood_face16" step="any"></td>
+      <td><input type="number" id="eff-wood_face16" value="90"></td>
+      <td id="cost100k-wood_face16">--</td>
+      <td id="seasonal-wood_face16">--</td>
+    </tr>
+<tr>
+      <td>Firewood (Face Cord 24")</td>
+      <td><input type="number" id="price-wood_face24" step="any"></td>
+      <td><input type="number" id="eff-wood_face24" value="90"></td>
+      <td id="cost100k-wood_face24">--</td>
+      <td id="seasonal-wood_face24">--</td>
+    </tr>
+<tr>
       <td>Pellets ($/ton)</td>
       <td><input type="number" id="price-pellets" step="any"></td>
-      <td><input type="number" id="eff-pellets" value="75"></td>
+      <td><input type="number" id="eff-pellets" value="90"></td>
       <td id="cost100k-pellets">--</td>
       <td id="seasonal-pellets">--</td>
+    </tr>
+<tr>
+      <td>Bituminous Coal ($/ton)</td>
+      <td><input type="number" id="price-bituminous" step="any"></td>
+      <td><input type="number" id="eff-bituminous" value="90"></td>
+      <td id="cost100k-bituminous">--</td>
+      <td id="seasonal-bituminous">--</td>
+    </tr>
+<tr>
+      <td>Anthracite Coal ($/ton)</td>
+      <td><input type="number" id="price-anthracite" step="any"></td>
+      <td><input type="number" id="eff-anthracite" value="90"></td>
+      <td id="cost100k-anthracite">--</td>
+      <td id="seasonal-anthracite">--</td>
+    </tr>
+<tr>
+      <td>Corn ($/bushel)</td>
+      <td><input type="number" id="price-corn_bushel" step="any"></td>
+      <td><input type="number" id="eff-corn_bushel" value="90"></td>
+      <td id="cost100k-corn_bushel">--</td>
+      <td id="seasonal-corn_bushel">--</td>
+    </tr>
+<tr>
+      <td>Corn ($/ton)</td>
+      <td><input type="number" id="price-corn_ton" step="any"></td>
+      <td><input type="number" id="eff-corn_ton" value="90"></td>
+      <td id="cost100k-corn_ton">--</td>
+      <td id="seasonal-corn_ton">--</td>
+    </tr>
+<tr>
+      <td>Kerosene ($/L)</td>
+      <td><input type="number" id="price-kerosene_l" step="any"></td>
+      <td><input type="number" id="eff-kerosene_l" value="90"></td>
+      <td id="cost100k-kerosene_l">--</td>
+      <td id="seasonal-kerosene_l">--</td>
+    </tr>
+<tr>
+      <td>Kerosene ($/gallon)</td>
+      <td><input type="number" id="price-kerosene_gal" step="any"></td>
+      <td><input type="number" id="eff-kerosene_gal" value="90"></td>
+      <td id="cost100k-kerosene_gal">--</td>
+      <td id="seasonal-kerosene_gal">--</td>
     </tr>
   </tbody>
 </table>
 
 <script>
-window.onload = function() {
+document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("city").addEventListener("change", function() {
     const selected = this.value;
     if (selected) {
       document.getElementById("hdd").value = selected;
     }
   });
-  const fuels = [
-    { id: 'electricity', btu: 3412, cents: true },
-    { id: 'ng', btu: 35870, cents: true },
-    { id: 'propane', btu: 91600, cents: false },
-    { id: 'wood', btu: 20000000, cents: false },
-    { id: 'pellets', btu: 16000000, cents: false }
-  ];
+
+  const fuels = [{"name": "Electricity (\u00a2/kWh)", "id": "electricity", "btu": 3412, "cents": true}, {"name": "Natural Gas (\u00a2/m\u00b3)", "id": "ng_m3", "btu": 35870, "cents": true}, {"name": "Natural Gas ($/therm)", "id": "ng_therm", "btu": 100000, "cents": false}, {"name": "Propane ($/L)", "id": "propane_l", "btu": 91600, "cents": false}, {"name": "Propane ($/gallon)", "id": "propane_gal", "btu": 91600, "cents": false}, {"name": "Heating Oil ($/L)", "id": "oil_l", "btu": 138500, "cents": false}, {"name": "Heating Oil ($/gallon)", "id": "oil_gal", "btu": 138500, "cents": false}, {"name": "Firewood (Full Cord)", "id": "wood_full", "btu": 20000000, "cents": false}, {"name": "Firewood (Face Cord 16\")", "id": "wood_face16", "btu": 6666670, "cents": false}, {"name": "Firewood (Face Cord 24\")", "id": "wood_face24", "btu": 10000000, "cents": false}, {"name": "Pellets ($/ton)", "id": "pellets", "btu": 16000000, "cents": false}, {"name": "Bituminous Coal ($/ton)", "id": "bituminous", "btu": 24000000, "cents": false}, {"name": "Anthracite Coal ($/ton)", "id": "anthracite", "btu": 25000000, "cents": false}, {"name": "Corn ($/bushel)", "id": "corn_bushel", "btu": 392000, "cents": false}, {"name": "Corn ($/ton)", "id": "corn_ton", "btu": 16000000, "cents": false}, {"name": "Kerosene ($/L)", "id": "kerosene_l", "btu": 135000, "cents": false}, {"name": "Kerosene ($/gallon)", "id": "kerosene_gal", "btu": 135000, "cents": false}];
 
   function calculate() {
     const sqft = parseFloat(document.getElementById("sqft").value);
@@ -172,10 +204,8 @@ window.onload = function() {
     });
   }
 
-  document.querySelectorAll("input").forEach(el => {
-    el.addEventListener("input", calculate);
-  });
-};
+  document.querySelectorAll("input").forEach(el => el.addEventListener("input", calculate));
+});
 </script>
 </body>
 </html>
