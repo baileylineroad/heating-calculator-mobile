@@ -162,60 +162,82 @@
 </table>
 
 
+
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  
-    document.getElementById("city").addEventListener("change", function() {
-        const selected = this.value;
-        if (selected) {
-            document.getElementById("hdd").value = selected;
-            // Force trigger of calculate + all input events
-            calculate();
-            document.querySelectorAll("input, select").forEach(el => {
-                const event = new Event("input", { bubbles: true });
-                el.dispatchEvent(event);
-            });
-        }
-    });
-
-
-  const fuels = [{"name": "Electricity (\u00a2/kWh)", "id": "electricity", "btu": 3412, "cents": true}, {"name": "Natural Gas (\u00a2/m\u00b3)", "id": "ng_m3", "btu": 35870, "cents": true}, {"name": "Natural Gas ($/therm)", "id": "ng_therm", "btu": 100000, "cents": false}, {"name": "Propane ($/L)", "id": "propane_l", "btu": 25300, "cents": false}, {"name": "Propane ($/gallon)", "id": "propane_gal", "btu": 91600, "cents": false}, {"name": "Heating Oil ($/L)", "id": "oil_l", "btu": 36600, "cents": false}, {"name": "Heating Oil ($/gallon)", "id": "oil_gal", "btu": 138500, "cents": false}, {"name": "Firewood (Full Cord)", "id": "wood_full", "btu": 20000000, "cents": false}, {"name": "Firewood (Face Cord 16\")", "id": "wood_face16", "btu": 6666670, "cents": false}, {"name": "Firewood (Face Cord 24\")", "id": "wood_face24", "btu": 10000000, "cents": false}, {"name": "Pellets ($/ton)", "id": "pellets", "btu": 16000000, "cents": false}, {"name": "Bituminous Coal ($/ton)", "id": "bituminous", "btu": 24000000, "cents": false}, {"name": "Anthracite Coal ($/ton)", "id": "anthracite", "btu": 25000000, "cents": false}, {"name": "Corn ($/bushel)", "id": "corn_bushel", "btu": 392000, "cents": false}, {"name": "Corn ($/ton)", "id": "corn_ton", "btu": 16000000, "cents": false}, {"name": "Kerosene ($/L)", "id": "kerosene_l", "btu": 135000, "cents": false}, {"name": "Kerosene ($/gallon)", "id": "kerosene_gal", "btu": 135000, "cents": false}];
+document.addEventListener("DOMContentLoaded", function () {
+  const fuels = [
+    "electricity", "ng_m3", "ng_therm", "propane_l", "propane_gal",
+    "oil_l", "oil_gal", "wood_full", "wood_face16", "wood_face24",
+    "pellets", "bituminous", "anthracite", "corn_bushel", "corn_ton",
+    "kerosene_l", "kerosene_gal"
+  ];
 
   function calculate() {
-    const sqft = parseFloat(document.getElementById("sqft").value);
     const hdd = parseFloat(document.getElementById("hdd").value);
-    if (isNaN(hdd) || isNaN(sqft)) return;
-
-    const demand = hdd * sqft * 10;
+    const sqft = 2000;
+    const load = hdd * sqft * 10;
 
     fuels.forEach(fuel => {
-      const priceEl = document.getElementById("price-" + fuel.id);
-      const effEl = document.getElementById("eff-" + fuel.id);
-      const cost100kCell = document.getElementById("cost100k-" + fuel.id);
-      const seasonalCell = document.getElementById("seasonal-" + fuel.id);
+      const priceInput = document.getElementById("price-" + fuel);
+      const effInput = document.getElementById("eff-" + fuel);
+      const costCell = document.getElementById("cost100k-" + fuel);
+      const seasonCell = document.getElementById("seasonal-" + fuel);
 
-      const rawPrice = parseFloat(priceEl.value);
-      const eff = parseFloat(effEl.options[effEl.selectedIndex].value) / 100;
+      if (!priceInput || !effInput || !costCell || !seasonCell) return;
 
-      if (!isNaN(rawPrice) && eff > 0) {
-        const unitPrice = fuel.cents ? rawPrice / 100 : rawPrice;
-        const costPerBTU = unitPrice / fuel.btu / eff;
-        const seasonalCost = costPerBTU * demand;
+      const price = parseFloat(priceInput.value);
+      const eff = parseFloat(effInput.value);
 
-        cost100kCell.textContent = "$" + (costPerBTU * 100000).toFixed(2);
-        seasonalCell.textContent = "$" + seasonalCost.toLocaleString(undefined, {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
-        });
-      } else {
-        cost100kCell.textContent = "--";
-        seasonalCell.textContent = "--";
+      const fuelRow = fuelsData.find(f => f.id === fuel);
+      if (!fuelRow || isNaN(price) || isNaN(eff) || isNaN(load)) {
+        costCell.textContent = "--";
+        seasonCell.textContent = "--";
+        return;
       }
+
+      const unitPrice = fuelRow.cents ? price / 100 : price;
+      const costPer100k = (100000 / (fuelRow.btu * (eff / 100))) * unitPrice;
+      const seasonalCost = (load / (fuelRow.btu * (eff / 100))) * unitPrice;
+
+      costCell.textContent = "$" + costPer100k.toFixed(2);
+      seasonCell.textContent = "$" + seasonalCost.toFixed(2);
     });
   }
 
-  document.querySelectorAll("input, select").forEach(el => el.addEventListener("input", calculate));
+  const fuelsData = [
+    { id: "electricity", btu: 3412, cents: true },
+    { id: "ng_m3", btu: 35870, cents: true },
+    { id: "ng_therm", btu: 100000, cents: false },
+    { id: "propane_l", btu: 25300, cents: false },
+    { id: "propane_gal", btu: 91600, cents: false },
+    { id: "oil_l", btu: 36600, cents: false },
+    { id: "oil_gal", btu: 138500, cents: false },
+    { id: "wood_full", btu: 20000000, cents: false },
+    { id: "wood_face16", btu: 6666670, cents: false },
+    { id: "wood_face24", btu: 10000000, cents: false },
+    { id: "pellets", btu: 16000000, cents: false },
+    { id: "bituminous", btu: 24000000, cents: false },
+    { id: "anthracite", btu: 25000000, cents: false },
+    { id: "corn_bushel", btu: 392000, cents: false },
+    { id: "corn_ton", btu: 16000000, cents: false },
+    { id: "kerosene_l", btu: 36600, cents: false },
+    { id: "kerosene_gal", btu: 135000, cents: false }
+  ];
+
+  document.querySelectorAll("input, select").forEach(el => {
+    el.addEventListener("input", calculate);
+    el.addEventListener("change", calculate);
+  });
+
+  document.getElementById("city").addEventListener("change", function () {
+    const selected = this.value;
+    if (selected) {
+      document.getElementById("hdd").value = selected;
+      calculate(); // Force full re-calc
+    }
+  });
 });
 </script>
+
 </body>
 </html>
