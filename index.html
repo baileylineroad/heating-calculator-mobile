@@ -1,36 +1,122 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>HDD City Test</title>
+  <title>Heating Cost Calculator – Live Version</title>
   <style>
-    body { font-family: sans-serif; padding: 1rem; }
-    label, input, select { display: block; margin: 1rem 0; }
+    body { font-family: Arial, sans-serif; max-width: 1000px; margin: 0 auto; padding: 1rem; }
+    label, input { display: block; margin: 0.5rem 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: center; }
+    th { background: #f0f0f0; }
   </style>
 </head>
 <body>
-  <label for="city">Select City:</label>
-  <select id="city" onchange="handleCityChange(this)">
-    <option value="">--Choose a City--</option>
-    <option value="Toronto">Toronto</option>
-    <option value="Calgary">Calgary</option>
-    <option value="Winnipeg">Winnipeg</option>
-  </select>
+<h1>Heating Cost Calculator</h1>
 
-  <label for="hdd">HDD:</label>
-  <input type="text" id="hdd" readonly>
+<label for="hdd">Heating Degree Days (HDD):</label>
+<input type="number" id="hdd" placeholder="e.g., 4200">
 
-  <script>
-    function handleCityChange(select) {
-      const HDD_MAP = {
-        "Toronto": 4200,
-        "Calgary": 7000,
-        "Winnipeg": 8000
-      };
-      const city = select.value;
-      document.getElementById("hdd").value = HDD_MAP[city] || "";
-    }
-  </script>
+<label for="sqft">Home Size (sq. ft.):</label>
+<input type="number" id="sqft" value="2000">
+
+<table>
+  <thead>
+    <tr>
+      <th>Fuel Type</th>
+      <th>Unit Price</th>
+      <th>Efficiency (%)</th>
+      <th>Cost per 100,000 BTUs</th>
+      <th>Seasonal Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Electricity (¢/kWh)</td>
+      <td><input type="number" id="price-electricity" step="any"></td>
+      <td><input type="number" id="eff-electricity" value="100"></td>
+      <td id="cost100k-electricity">--</td>
+      <td id="seasonal-electricity">--</td>
+    </tr>
+    <tr>
+      <td>Natural Gas (¢/m³)</td>
+      <td><input type="number" id="price-ng" step="any"></td>
+      <td><input type="number" id="eff-ng" value="90"></td>
+      <td id="cost100k-ng">--</td>
+      <td id="seasonal-ng">--</td>
+    </tr>
+    <tr>
+      <td>Propane ($/L)</td>
+      <td><input type="number" id="price-propane" step="any"></td>
+      <td><input type="number" id="eff-propane" value="92"></td>
+      <td id="cost100k-propane">--</td>
+      <td id="seasonal-propane">--</td>
+    </tr>
+    <tr>
+      <td>Firewood (Full Cord)</td>
+      <td><input type="number" id="price-wood" step="any"></td>
+      <td><input type="number" id="eff-wood" value="70"></td>
+      <td id="cost100k-wood">--</td>
+      <td id="seasonal-wood">--</td>
+    </tr>
+    <tr>
+      <td>Pellets ($/ton)</td>
+      <td><input type="number" id="price-pellets" step="any"></td>
+      <td><input type="number" id="eff-pellets" value="75"></td>
+      <td id="cost100k-pellets">--</td>
+      <td id="seasonal-pellets">--</td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+window.onload = function() {
+  const fuels = [
+    { id: 'electricity', btu: 3412, cents: true },
+    { id: 'ng', btu: 35870, cents: true },
+    { id: 'propane', btu: 91600, cents: false },
+    { id: 'wood', btu: 20000000, cents: false },
+    { id: 'pellets', btu: 16000000, cents: false }
+  ];
+
+  function calculate() {
+    const sqft = parseFloat(document.getElementById("sqft").value);
+    const hdd = parseFloat(document.getElementById("hdd").value);
+    if (isNaN(hdd) || isNaN(sqft)) return;
+
+    const demand = hdd * sqft * 10;
+
+    fuels.forEach(fuel => {
+      const priceEl = document.getElementById("price-" + fuel.id);
+      const effEl = document.getElementById("eff-" + fuel.id);
+      const cost100kCell = document.getElementById("cost100k-" + fuel.id);
+      const seasonalCell = document.getElementById("seasonal-" + fuel.id);
+
+      const rawPrice = parseFloat(priceEl.value);
+      const eff = parseFloat(effEl.value) / 100;
+
+      if (!isNaN(rawPrice) && eff > 0) {
+        const unitPrice = fuel.cents ? rawPrice / 100 : rawPrice;
+        const costPerBTU = unitPrice / fuel.btu / eff;
+        const seasonalCost = costPerBTU * demand;
+
+        cost100kCell.textContent = "$" + (costPerBTU * 100000).toFixed(2);
+        seasonalCell.textContent = "$" + seasonalCost.toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+      } else {
+        cost100kCell.textContent = "--";
+        seasonalCell.textContent = "--";
+      }
+    });
+  }
+
+  document.querySelectorAll("input").forEach(el => {
+    el.addEventListener("input", calculate);
+  });
+};
+</script>
 </body>
 </html>
