@@ -38,127 +38,129 @@
     </tr>
   </thead>
   <tbody>
+    
     <tr>
       <td>Electricity (¢/kWh)</td>
       <td><input type="number" id="price-electricity" step="any"></td>
-      <td><input type="number" id="eff-electricity" value="90"></td>
+      <td><select id="eff-electricity"><option value="100">Baseboard Electric</option><option value="300">Mini-Split Heat Pump</option></select></td>
       <td id="cost100k-electricity">--</td>
       <td id="seasonal-electricity">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Natural Gas (¢/m³)</td>
       <td><input type="number" id="price-ng_m3" step="any"></td>
-      <td><input type="number" id="eff-ng_m3" value="90"></td>
+      <td><select id="eff-ng_m3"><option value="95">High-Efficiency Gas Furnace</option><option value="80">Mid-Efficiency Gas Furnace</option></select></td>
       <td id="cost100k-ng_m3">--</td>
       <td id="seasonal-ng_m3">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Natural Gas ($/therm)</td>
       <td><input type="number" id="price-ng_therm" step="any"></td>
-      <td><input type="number" id="eff-ng_therm" value="90"></td>
+      <td><select id="eff-ng_therm"><option value="95">High-Efficiency Gas Furnace</option><option value="80">Mid-Efficiency Gas Furnace</option></select></td>
       <td id="cost100k-ng_therm">--</td>
       <td id="seasonal-ng_therm">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Propane ($/L)</td>
       <td><input type="number" id="price-propane_l" step="any"></td>
-      <td><input type="number" id="eff-propane_l" value="90"></td>
+      <td><select id="eff-propane_l"><option value="92">High-Efficiency Propane Furnace</option></select></td>
       <td id="cost100k-propane_l">--</td>
       <td id="seasonal-propane_l">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Propane ($/gallon)</td>
       <td><input type="number" id="price-propane_gal" step="any"></td>
-      <td><input type="number" id="eff-propane_gal" value="90"></td>
+      <td><select id="eff-propane_gal"><option value="92">High-Efficiency Propane Furnace</option></select></td>
       <td id="cost100k-propane_gal">--</td>
       <td id="seasonal-propane_gal">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Heating Oil ($/L)</td>
       <td><input type="number" id="price-oil_l" step="any"></td>
-      <td><input type="number" id="eff-oil_l" value="90"></td>
+      <td><select id="eff-oil_l"><option value="60">Older Furnace</option></select></td>
       <td id="cost100k-oil_l">--</td>
       <td id="seasonal-oil_l">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Heating Oil ($/gallon)</td>
       <td><input type="number" id="price-oil_gal" step="any"></td>
-      <td><input type="number" id="eff-oil_gal" value="90"></td>
+      <td><select id="eff-oil_gal"><option value="60">Older Furnace</option></select></td>
       <td id="cost100k-oil_gal">--</td>
       <td id="seasonal-oil_gal">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Firewood (Full Cord)</td>
       <td><input type="number" id="price-wood_full" step="any"></td>
-      <td><input type="number" id="eff-wood_full" value="90"></td>
+      <td><select id="eff-wood_full"><option value="78">Catalytic Airtight</option><option value="70">Non-Catalytic Airtight</option><option value="55">Non-Airtight</option></select></td>
       <td id="cost100k-wood_full">--</td>
       <td id="seasonal-wood_full">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Firewood (Face Cord 16")</td>
       <td><input type="number" id="price-wood_face16" step="any"></td>
-      <td><input type="number" id="eff-wood_face16" value="90"></td>
+      <td><select id="eff-wood_face16"><option value="78">Catalytic Airtight</option><option value="70">Non-Catalytic Airtight</option><option value="55">Non-Airtight</option></select></td>
       <td id="cost100k-wood_face16">--</td>
       <td id="seasonal-wood_face16">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Firewood (Face Cord 24")</td>
       <td><input type="number" id="price-wood_face24" step="any"></td>
-      <td><input type="number" id="eff-wood_face24" value="90"></td>
+      <td><select id="eff-wood_face24"><option value="78">Catalytic Airtight</option><option value="70">Non-Catalytic Airtight</option><option value="55">Non-Airtight</option></select></td>
       <td id="cost100k-wood_face24">--</td>
       <td id="seasonal-wood_face24">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Pellets ($/ton)</td>
       <td><input type="number" id="price-pellets" step="any"></td>
-      <td><input type="number" id="eff-pellets" value="90"></td>
+      <td><select id="eff-pellets"><option value="75">Pellet Stove</option><option value="70">Multi-Fuel Pellet Stove</option></select></td>
       <td id="cost100k-pellets">--</td>
       <td id="seasonal-pellets">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Bituminous Coal ($/ton)</td>
       <td><input type="number" id="price-bituminous" step="any"></td>
-      <td><input type="number" id="eff-bituminous" value="90"></td>
+      <td><select id="eff-bituminous"><option value="70">Hand-Fired Coal Stove</option><option value="80">Stoker Coal Stove</option></select></td>
       <td id="cost100k-bituminous">--</td>
       <td id="seasonal-bituminous">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Anthracite Coal ($/ton)</td>
       <td><input type="number" id="price-anthracite" step="any"></td>
-      <td><input type="number" id="eff-anthracite" value="90"></td>
+      <td><select id="eff-anthracite"><option value="70">Hand-Fired Coal Stove</option><option value="80">Stoker Coal Stove</option></select></td>
       <td id="cost100k-anthracite">--</td>
       <td id="seasonal-anthracite">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Corn ($/bushel)</td>
       <td><input type="number" id="price-corn_bushel" step="any"></td>
-      <td><input type="number" id="eff-corn_bushel" value="90"></td>
+      <td><select id="eff-corn_bushel"><option value="75">Corn Stove</option><option value="70">Multi-Fuel Pellet Stove</option></select></td>
       <td id="cost100k-corn_bushel">--</td>
       <td id="seasonal-corn_bushel">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Corn ($/ton)</td>
       <td><input type="number" id="price-corn_ton" step="any"></td>
-      <td><input type="number" id="eff-corn_ton" value="90"></td>
+      <td><select id="eff-corn_ton"><option value="75">Corn Stove</option><option value="70">Multi-Fuel Pellet Stove</option></select></td>
       <td id="cost100k-corn_ton">--</td>
       <td id="seasonal-corn_ton">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Kerosene ($/L)</td>
       <td><input type="number" id="price-kerosene_l" step="any"></td>
-      <td><input type="number" id="eff-kerosene_l" value="90"></td>
+      <td><select id="eff-kerosene_l"><option value="60">Older Furnace</option></select></td>
       <td id="cost100k-kerosene_l">--</td>
       <td id="seasonal-kerosene_l">--</td>
     </tr>
-<tr>
+    <tr>
       <td>Kerosene ($/gallon)</td>
       <td><input type="number" id="price-kerosene_gal" step="any"></td>
-      <td><input type="number" id="eff-kerosene_gal" value="90"></td>
+      <td><select id="eff-kerosene_gal"><option value="60">Older Furnace</option></select></td>
       <td id="cost100k-kerosene_gal">--</td>
       <td id="seasonal-kerosene_gal">--</td>
     </tr>
   </tbody>
 </table>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -185,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const seasonalCell = document.getElementById("seasonal-" + fuel.id);
 
       const rawPrice = parseFloat(priceEl.value);
-      const eff = parseFloat(effEl.value) / 100;
+      const eff = parseFloat(effEl.options[effEl.selectedIndex].value) / 100;
 
       if (!isNaN(rawPrice) && eff > 0) {
         const unitPrice = fuel.cents ? rawPrice / 100 : rawPrice;
@@ -204,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  document.querySelectorAll("input").forEach(el => el.addEventListener("input", calculate));
+  document.querySelectorAll("input, select").forEach(el => el.addEventListener("input", calculate));
 });
 </script>
 </body>
