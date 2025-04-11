@@ -5,9 +5,6 @@
 <head>
 <meta charset="utf-8"/>
 <title>Heating Cost Calculator – Phase 6 (Step 4)</title>
-
-
-
 <style>
   body {
     margin: 0;
@@ -47,13 +44,6 @@
     }
   }
 </style>
-
-
-
-
-
-
-
 <style>
   body {
     margin: 0;
@@ -93,9 +83,6 @@
     }
   }
 </style>
-
-
-
 </head>
 <body>
 <h1>Heating Cost Calculator – Phase 6 (Step 4)</h1>
@@ -119,49 +106,49 @@
 <tr>
 <td>Electricity (¢/kWh)</td>
 <td><input id="price-electricity" step="any" type="number"/></td>
-<td><select id="eff-electricity"><option value="100">Baseboard Electric</option><option value="300">Mini-Split Heat Pump</option></select></td>
+<td><select id="eff-electricity"><option value="100">Baseboard</option><option value="300">Mini-Split Heat Pump</option></select></td>
 <td id="cost100k-electricity">--</td>
 <td id="seasonal-electricity">--</td>
 </tr>
 <tr>
 <td>Natural Gas (¢/m³)</td>
 <td><input id="price-ng_m3" step="any" type="number"/></td>
-<td><select id="eff-ng_m3"><option value="95">High-Efficiency Gas Furnace</option><option value="80">Mid-Efficiency Gas Furnace</option></select></td>
+<td><select id="eff-ng_m3"><option value="95">Hi-Eff Furnace</option><option value="80">Mid-Eff Furnace</option></select></td>
 <td id="cost100k-ng_m3">--</td>
 <td id="seasonal-ng_m3">--</td>
 </tr>
 <tr>
 <td>Natural Gas ($/therm)</td>
 <td><input id="price-ng_therm" step="any" type="number"/></td>
-<td><select id="eff-ng_therm"><option value="95">High-Efficiency Gas Furnace</option><option value="80">Mid-Efficiency Gas Furnace</option></select></td>
+<td><select id="eff-ng_therm"><option value="95">Hi-Eff Furnace</option><option value="80">Mid-Eff Furnace</option></select></td>
 <td id="cost100k-ng_therm">--</td>
 <td id="seasonal-ng_therm">--</td>
 </tr>
 <tr>
 <td>Propane ($/L)</td>
 <td><input id="price-propane_l" step="any" type="number"/></td>
-<td><select id="eff-propane_l"><option value="92">High-Efficiency Propane Furnace</option><option value="80">Mid-efficiency furnace</option><option value="82">Vented propane wall heater</option></select></td>
+<td><select id="eff-propane_l"><option value="92">Hi-Eff Furnace</option><option value="80">Furnace (mid)</option><option value="82">Wall heater (vented)</option></select></td>
 <td id="cost100k-propane_l">--</td>
 <td id="seasonal-propane_l">--</td>
 </tr>
 <tr>
 <td>Propane ($/gallon)</td>
 <td><input id="price-propane_gal" step="any" type="number"/></td>
-<td><select id="eff-propane_gal"><option value="92">High-Efficiency Propane Furnace</option><option value="80">Mid-efficiency furnace</option><option value="82">Vented propane wall heater</option></select></td>
+<td><select id="eff-propane_gal"><option value="92">Hi-Eff Furnace</option><option value="80">Furnace (mid)</option><option value="82">Wall heater (vented)</option></select></td>
 <td id="cost100k-propane_gal">--</td>
 <td id="seasonal-propane_gal">--</td>
 </tr>
 <tr>
 <td>Heating Oil ($/L)</td>
 <td><input id="price-oil_l" step="any" type="number"/></td>
-<td><select id="eff-oil_l"><option value="90">High-efficiency oil boiler</option><option value="83">Standard oil furnace or boiler</option><option value="70">Freestanding stove</option></select></td>
+<td><select id="eff-oil_l"><option value="90">Hi-Eff Boiler</option><option value="83">Std-Eff Furnace</option><option value="70">Freestanding oil stove</option></select></td>
 <td id="cost100k-oil_l">--</td>
 <td id="seasonal-oil_l">--</td>
 </tr>
 <tr>
 <td>Heating Oil ($/gallon)</td>
 <td><input id="price-oil_gal" step="any" type="number"/></td>
-<td><select id="eff-oil_gal"><option value="90">High-efficiency oil boiler</option><option value="83">Standard oil furnace or boiler</option><option value="70">Freestanding stove</option></select></td>
+<td><select id="eff-oil_gal"><option value="90">Hi-Eff Boiler</option><option value="83">Std-Eff Furnace</option><option value="70">Freestanding oil stove</option></select></td>
 <td id="cost100k-oil_gal">--</td>
 <td id="seasonal-oil_gal">--</td>
 </tr>
@@ -196,14 +183,14 @@
 <tr>
 <td>Bituminous Coal ($/ton)</td>
 <td><input id="price-bituminous" step="any" type="number"/></td>
-<td><select id="eff-bituminous"><option value="70">Hand-Fired Coal Stove</option><option value="80">Stoker Coal Stove</option></select></td>
+<td><select id="eff-bituminous"><option value="70">Hand-Fed Stove</option><option value="80">Stoker  Stove</option></select></td>
 <td id="cost100k-bituminous">--</td>
 <td id="seasonal-bituminous">--</td>
 </tr>
 <tr>
 <td>Anthracite Coal ($/ton)</td>
 <td><input id="price-anthracite" step="any" type="number"/></td>
-<td><select id="eff-anthracite"><option value="70">Hand-Fired Coal Stove</option><option value="80">Stoker Coal Stove</option></select></td>
+<td><select id="eff-anthracite"><option value="70">Hand-Fed Stove</option><option value="80">Stoker  Stove</option></select></td>
 <td id="cost100k-anthracite">--</td>
 <td id="seasonal-anthracite">--</td>
 </tr>
@@ -224,14 +211,14 @@
 <tr>
 <td>Kerosene ($/L)</td>
 <td><input id="price-kerosene_l" step="any" type="number"/></td>
-<td><select id="eff-kerosene_l"><option value="60">Older Furnace</option></select></td>
+<td><select id="eff-kerosene_l"><option value="82">Vented wall heater</option><option value="99">Unvented portable heater</option><option value="75">Kerosene boiler/furnace (older)</option></select></td>
 <td id="cost100k-kerosene_l">--</td>
 <td id="seasonal-kerosene_l">--</td>
 </tr>
 <tr>
 <td>Kerosene ($/gallon)</td>
 <td><input id="price-kerosene_gal" step="any" type="number"/></td>
-<td><select id="eff-kerosene_gal"><option value="60">Older Furnace</option></select></td>
+<td><select id="eff-kerosene_gal"><option value="82">Vented wall heater</option><option value="99">Unvented portable heater</option><option value="75">Kerosene boiler/furnace (older)</option></select></td>
 <td id="cost100k-kerosene_gal">--</td>
 <td id="seasonal-kerosene_gal">--</td>
 </tr>
