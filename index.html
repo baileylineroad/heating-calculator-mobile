@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>HDD City Test</title>
+  <style>
+    body { font-family: sans-serif; padding: 1rem; }
+    label, input, select { display: block; margin: 1rem 0; }
+  </style>
+</head>
+<body>
+  <label for="city">Select City:</label>
+  <select id="city" onchange="handleCityChange(this)">
+    <option value="">--Choose a City--</option>
+    <option value="Toronto">Toronto</option>
+    <option value="Calgary">Calgary</option>
+    <option value="Winnipeg">Winnipeg</option>
+  </select>
+
+  <label for="hdd">HDD:</label>
+  <input type="text" id="hdd" readonly>
+
+  <script>
+    function handleCityChange(select) {
+      const HDD_MAP = {
+        "Toronto": 4200,
+        "Calgary": 7000,
+        "Winnipeg": 8000
+      };
+      const city = select.value;
+      document.getElementById("hdd").value = HDD_MAP[city] || "";
+    }
+  </script>
+</body>
+</html>
