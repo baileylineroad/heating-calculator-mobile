@@ -15,6 +15,59 @@
 <body>
 <h1>Heating Cost Calculator</h1>
 
+<label for="city">Choose Your City:</label>
+<select id="city"><option value="">-- Select a City --</option>
+<option value="9500">Anchorage, AK</option>
+<option value="3000">Atlanta, GA</option>
+<option value="1500">Austin, TX</option>
+<option value="4200">Baltimore, MD</option>
+<option value="7200">Billings, MT</option>
+<option value="5000">Boston, MA</option>
+<option value="6200">Buffalo, NY</option>
+<option value="7500">Calgary, AB</option>
+<option value="2800">Charlotte, NC</option>
+<option value="5500">Chicago, IL</option>
+<option value="4800">Cincinnati, OH</option>
+<option value="5000">Cleveland, OH</option>
+<option value="4900">Columbus, OH</option>
+<option value="1800">Dallas, TX</option>
+<option value="6000">Denver, CO</option>
+<option value="5800">Detroit, MI</option>
+<option value="8100">Edmonton, AB</option>
+<option value="4600">Halifax, NS</option>
+<option value="1300">Houston, TX</option>
+<option value="5100">Indianapolis, IN</option>
+<option value="4400">Kansas City, MO</option>
+<option value="1400">Las Vegas, NV</option>
+<option value="1000">Los Angeles, CA</option>
+<option value="4100">Louisville, KY</option>
+<option value="500">Miami, FL</option>
+<option value="6200">Milwaukee, WI</option>
+<option value="7000">Minneapolis, MN</option>
+<option value="5000">Montreal, QC</option>
+<option value="2800">Nashville, TN</option>
+<option value="1000">New Orleans, LA</option>
+<option value="4100">New York, NY</option>
+<option value="3600">Oklahoma City, OK</option>
+<option value="5800">Omaha, NE</option>
+<option value="800">Orlando, FL</option>
+<option value="4800">Ottawa, ON</option>
+<option value="4400">Philadelphia, PA</option>
+<option value="800">Phoenix, AZ</option>
+<option value="5100">Pittsburgh, PA</option>
+<option value="4500">Portland, OR</option>
+<option value="5900">Quebec City, QC</option>
+<option value="2800">Raleigh, NC</option>
+<option value="7800">Regina, SK</option>
+<option value="5400">Salt Lake City, UT</option>
+<option value="1000">San Diego, CA</option>
+<option value="1500">San Francisco, CA</option>
+<option value="4200">Seattle, WA</option>
+<option value="4000">St. Louis, MO</option>
+<option value="4200">Toronto, ON</option>
+<option value="3000">Vancouver, BC</option>
+<option value="7200">Winnipeg, MB</option>
+</select>
 <label for="hdd">Heating Degree Days (HDD):</label>
 <input type="number" id="hdd" placeholder="e.g., 4200">
 
@@ -72,6 +125,12 @@
 
 <script>
 window.onload = function() {
+  document.getElementById("city").addEventListener("change", function() {
+    const selected = this.value;
+    if (selected) {
+      document.getElementById("hdd").value = selected;
+    }
+  });
   const fuels = [
     { id: 'electricity', btu: 3412, cents: true },
     { id: 'ng', btu: 35870, cents: true },
