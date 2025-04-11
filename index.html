@@ -5,6 +5,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Heating Cost Calculator – Phase 6 (Step 4)</title>
+
 <style>
   body {
     margin: 0;
@@ -14,36 +15,48 @@
   table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
   }
 
   td, th {
-    padding: 8px;
+    padding: 6px;
     font-size: 14px;
+    word-wrap: break-word;
   }
 
   input[type="number"], select {
     width: 100%;
     box-sizing: border-box;
+    font-size: 14px;
   }
 
-  @media (max-width: 768px) {
-    body {
+  @media (max-width: 768px) and (orientation: landscape) {
+    td, th {
+      font-size: 16px;
       padding: 8px;
     }
 
-    table {
+    select, input[type="number"] {
       font-size: 16px;
+    }
+  }
+
+  @media (max-width: 768px) and (orientation: portrait) {
+    table {
+      font-size: 13px;
     }
 
     td, th {
-      padding: 6px;
+      padding: 4px;
     }
 
     select, input[type="number"] {
-      font-size: 20px !important;
+      font-size: 14px;
     }
   }
 </style>
+
+
 <style>
   body {
     margin: 0;
@@ -53,36 +66,47 @@
   table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
   }
 
   td, th {
-    padding: 8px;
+    padding: 6px;
     font-size: 14px;
+    word-wrap: break-word;
   }
 
   input[type="number"], select {
     width: 100%;
     box-sizing: border-box;
+    font-size: 14px;
   }
 
-  @media (max-width: 768px) {
-    body {
+  @media (max-width: 768px) and (orientation: landscape) {
+    td, th {
+      font-size: 16px;
       padding: 8px;
     }
 
-    table {
+    select, input[type="number"] {
       font-size: 16px;
+    }
+  }
+
+  @media (max-width: 768px) and (orientation: portrait) {
+    table {
+      font-size: 13px;
     }
 
     td, th {
-      padding: 6px;
+      padding: 4px;
     }
 
     select, input[type="number"] {
-      font-size: 20px !important;
+      font-size: 14px;
     }
   }
 </style>
+
 </head>
 <body>
 <h1>Heating Cost Calculator – Phase 6 (Step 4)</h1>
