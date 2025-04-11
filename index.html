@@ -164,14 +164,22 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById("city").addEventListener("change", function() {
-    const selected = this.value;
-    if (selected) {
-      document.getElementById("hdd").value = selected;
-    }
-  });
+  
+    document.getElementById("city").addEventListener("change", function() {
+        const selected = this.value;
+        if (selected) {
+            document.getElementById("hdd").value = selected;
+            // Force trigger of calculate + all input events
+            calculate();
+            document.querySelectorAll("input, select").forEach(el => {
+                const event = new Event("input", { bubbles: true });
+                el.dispatchEvent(event);
+            });
+        }
+    });
 
-  const fuels = [{"name": "Electricity (\u00a2/kWh)", "id": "electricity", "btu": 3412, "cents": true}, {"name": "Natural Gas (\u00a2/m\u00b3)", "id": "ng_m3", "btu": 35870, "cents": true}, {"name": "Natural Gas ($/therm)", "id": "ng_therm", "btu": 100000, "cents": false}, {"name": "Propane ($/L)", "id": "propane_l", "btu": 22800, "cents": false}, {"name": "Propane ($/gallon)", "id": "propane_gal", "btu": 22800, "cents": false}, {"name": "Heating Oil ($/L)", "id": "oil_l", "btu": 138500, "cents": false}, {"name": "Heating Oil ($/gallon)", "id": "oil_gal", "btu": 138500, "cents": false}, {"name": "Firewood (Full Cord)", "id": "wood_full", "btu": 20000000, "cents": false}, {"name": "Firewood (Face Cord 16\")", "id": "wood_face16", "btu": 6666670, "cents": false}, {"name": "Firewood (Face Cord 24\")", "id": "wood_face24", "btu": 10000000, "cents": false}, {"name": "Pellets ($/ton)", "id": "pellets", "btu": 16000000, "cents": false}, {"name": "Bituminous Coal ($/ton)", "id": "bituminous", "btu": 24000000, "cents": false}, {"name": "Anthracite Coal ($/ton)", "id": "anthracite", "btu": 25000000, "cents": false}, {"name": "Corn ($/bushel)", "id": "corn_bushel", "btu": 392000, "cents": false}, {"name": "Corn ($/ton)", "id": "corn_ton", "btu": 16000000, "cents": false}, {"name": "Kerosene ($/L)", "id": "kerosene_l", "btu": 135000, "cents": false}, {"name": "Kerosene ($/gallon)", "id": "kerosene_gal", "btu": 135000, "cents": false}];
+
+  const fuels = [{"name": "Electricity (\u00a2/kWh)", "id": "electricity", "btu": 3412, "cents": true}, {"name": "Natural Gas (\u00a2/m\u00b3)", "id": "ng_m3", "btu": 35870, "cents": true}, {"name": "Natural Gas ($/therm)", "id": "ng_therm", "btu": 100000, "cents": false}, {"name": "Propane ($/L)", "id": "propane_l", "btu": 25300, "cents": false}, {"name": "Propane ($/gallon)", "id": "propane_gal", "btu": 91600, "cents": false}, {"name": "Heating Oil ($/L)", "id": "oil_l", "btu": 36600, "cents": false}, {"name": "Heating Oil ($/gallon)", "id": "oil_gal", "btu": 138500, "cents": false}, {"name": "Firewood (Full Cord)", "id": "wood_full", "btu": 20000000, "cents": false}, {"name": "Firewood (Face Cord 16\")", "id": "wood_face16", "btu": 6666670, "cents": false}, {"name": "Firewood (Face Cord 24\")", "id": "wood_face24", "btu": 10000000, "cents": false}, {"name": "Pellets ($/ton)", "id": "pellets", "btu": 16000000, "cents": false}, {"name": "Bituminous Coal ($/ton)", "id": "bituminous", "btu": 24000000, "cents": false}, {"name": "Anthracite Coal ($/ton)", "id": "anthracite", "btu": 25000000, "cents": false}, {"name": "Corn ($/bushel)", "id": "corn_bushel", "btu": 392000, "cents": false}, {"name": "Corn ($/ton)", "id": "corn_ton", "btu": 16000000, "cents": false}, {"name": "Kerosene ($/L)", "id": "kerosene_l", "btu": 135000, "cents": false}, {"name": "Kerosene ($/gallon)", "id": "kerosene_gal", "btu": 135000, "cents": false}];
 
   function calculate() {
     const sqft = parseFloat(document.getElementById("sqft").value);
